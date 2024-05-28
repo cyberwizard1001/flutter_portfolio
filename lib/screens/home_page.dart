@@ -37,6 +37,8 @@ class _HomePageState extends State<HomePage> {
               delegate: SliverChildListDelegate(
                 [
                   LandingSection(),
+                  SizedBox(height: 2.h,),
+                  ProjectsSection(),
 
                   //Add more sections here
                 ],
@@ -63,8 +65,10 @@ class LandingSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100.w,
-      color: SiteColors.backgroundDark,
+      decoration: BoxDecoration(
+        border: Border.all(color: SiteColors.primaryDark),
+        color: SiteColors.backgroundDark,
+      ),
       child: Padding(
         padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
         child: Column(
@@ -84,7 +88,7 @@ class LandingSection extends StatelessWidget {
                         TextSpan(
                             text: 'digital realities',
                             style: GoogleFonts.lato(
-                              color: SiteColors.primaryDark,
+                              color: SiteColors.focusDark,
                               fontSize: 32.sp,
                               fontWeight: FontWeight.w600,
                             ))
@@ -127,19 +131,19 @@ class LandingSection extends StatelessWidget {
                       Text('nirmalkarthikeyan1@gmail.com',
                           style: GoogleFonts.lato(
                             color: SiteColors.secondaryDark,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                           )),
                     ],
                   ),
                 ),
-                Expanded(child: Container(), flex: 1),
+                Expanded(child: SizedBox(), flex: 1),
                 Expanded(
                   flex: 1,
                   child: Text(
-                    "I'm a passionate UX design and research enthusiast who loves turning user needs into delightful digital experiences, one data-driven insight at a time.",
+                    "Hello! I’m Nirmal. I’m a developer turned designer with an eye for detail and a very varied list of interests.",
                     style: GoogleFonts.lato(
                       color: SiteColors.primaryDark,
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -152,3 +156,18 @@ class LandingSection extends StatelessWidget {
     );
   }
 }
+
+class ProjectsSection extends StatelessWidget {
+  const ProjectsSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: SiteColors.primaryDark),
+        color: SiteColors.backgroundDark
+      ),
+    );
+  }
+}
+
