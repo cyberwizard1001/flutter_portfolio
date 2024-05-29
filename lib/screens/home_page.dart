@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
+import 'package:flutter_portfolio/widgets/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../widgets/projects_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -29,24 +32,34 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SiteColors.backgroundDark,
-      body: LayoutBuilder(builder: (context, constraints) {
-        return CustomScrollView(slivers: [
-          SliverStickyHeader(
-            header: const TopNavigation(),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  LandingSection(),
-                  SizedBox(height: 2.h,),
-                  ProjectsSection(),
+      body: Padding(
+        padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return CustomScrollView(slivers: [
+            SliverStickyHeader(
+              header: const TopNavigation(),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    SizedBox(height: 6.h),
+                    LandingSection(),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    ProjectsSection(),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    TerminalInterfaceWidget()
 
-                  //Add more sections here
-                ],
+                    //Add more sections here
+                  ],
+                ),
               ),
             ),
-          ),
-        ]);
-      }),
+          ]);
+        }),
+      ),
       floatingActionButton: Visibility(
         visible: _scrollController.hasClients && _scrollController.offset > 100,
         child: FloatingActionButton(
@@ -66,108 +79,184 @@ class LandingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: SiteColors.primaryDark),
+        // border: Border.all(color: SiteColors.primaryDark),
         color: SiteColors.backgroundDark,
       ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                RichText(
-                  text: TextSpan(
-                      text: 'Weaving dreams into ',
-                      style: GoogleFonts.lato(
-                        color: SiteColors.primaryDark,
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
-                      children: [
-                        TextSpan(
-                            text: 'digital realities',
-                            style: GoogleFonts.lato(
-                              color: SiteColors.focusDark,
-                              fontSize: 32.sp,
-                              fontWeight: FontWeight.w600,
-                            ))
-                      ]),
-                ),
-                Positioned(
-                    left: 75.w,
-                    top: 22.h,
-                    child: MaterialButton(
-
-                      color: SiteColors.primaryDark,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                  onPressed: () {},
-                  child: Text('View CV',style: GoogleFonts.lato(color: SiteColors.primaryInverseDark),),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 10.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Let\'s talk',
-                        style: GoogleFonts.lato(
-                          color: SiteColors.primaryDark,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      //email address
-                      Text('nirmalkarthikeyan1@gmail.com',
-                          style: GoogleFonts.lato(
-                            color: SiteColors.secondaryDark,
-                            fontSize: 12.sp,
-                          )),
-                    ],
-                  ),
-                ),
-                Expanded(child: SizedBox(), flex: 1),
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    "Hello! I’m Nirmal. I’m a developer turned designer with an eye for detail and a very varied list of interests.",
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              RichText(
+                text: TextSpan(
+                    text: 'Weaving dreams into ',
                     style: GoogleFonts.lato(
                       color: SiteColors.primaryDark,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.normal,
+                      fontSize: 32.sp,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: -1.0,
                     ),
+                    children: [
+                      TextSpan(
+                          text: 'digital realities',
+                          style: GoogleFonts.lato(
+                            color: SiteColors.focusDark,
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.w600,
+                          ))
+                    ]),
+              ),
+            ],
+          ),
+          SizedBox(height: 4.h),
+          Align(
+            alignment: Alignment.topLeft,
+            child: MaterialButton(
+              color: SiteColors.primaryDark,
+              padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 2.h),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(40.0)),
+              ),
+              onPressed: () {},
+              child: Text(
+                'View CV',
+                style: GoogleFonts.lato(
+                    color: SiteColors.primaryInverseDark, fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+          SizedBox(height: 10.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Let\'s talk',
+                      style: GoogleFonts.lato(
+                        color: SiteColors.primaryDark,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    //email address
+                    Text('nirmalkarthikeyan1@gmail.com',
+                        style: GoogleFonts.lato(
+                          color: SiteColors.secondaryDark,
+                          fontSize: 12.sp,
+                        )),
+                  ],
+                ),
+              ),
+              const Expanded(child: SizedBox(), flex: 1),
+              Expanded(
+                flex: 1,
+                child: Text(
+                  "Hello! I’m Nirmal. I’m a developer turned designer with an eye for detail and a very varied list of interests.",
+                  textAlign: TextAlign.end,
+                  style: GoogleFonts.lato(
+                    color: SiteColors.primaryDark,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
 }
 
 class ProjectsSection extends StatelessWidget {
-  const ProjectsSection({super.key});
+  ProjectsSection({super.key});
+
+  final List<ProjectsCard> items = [
+    ProjectsCard(
+      projectName: 'Project 1',
+      projectDescription: 'This is a project description',
+      URL: 'no',
+    ),
+    ProjectsCard(
+      projectName: 'Project 2',
+      projectDescription: 'This is a project description',
+      URL: 'no'
+    ),
+    ProjectsCard(
+      projectName: 'Project 3',
+      projectDescription: 'This is a project description',
+      URL: 'no'
+    ),
+    ProjectsCard(
+      projectName: 'Project 4',
+      projectDescription: 'This is a project description',
+      URL: 'no'
+    ),
+    ProjectsCard(
+      projectName: 'Project 5',
+      projectDescription: 'This is a project description',
+      URL: 'no'
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: SiteColors.primaryDark),
-        color: SiteColors.backgroundDark
+          border: Border.all(color: SiteColors.primaryDark),
+          color: SiteColors.backgroundDark),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Projects',
+                    style: GoogleFonts.lato(
+                        fontSize: 20.sp, color: SiteColors.primaryDark),
+                  ),
+                  Text(
+                    'This is some text here that explains what I have in the projects section and is this long and wide',
+                    style: GoogleFonts.lato(color: SiteColors.primaryDark),
+                  )
+                ],
+              ),
+              MaterialButton(onPressed: (){},child: Row(
+                children: [
+                  Text('More',style: GoogleFonts.lato(color: SiteColors.primaryDark),),
+                  Icon(Icons.arrow_right_alt_rounded, color: SiteColors.primaryDark,)
+                ],
+              ),)
+            ],
+          ),
+          SizedBox(height: 5.h),
+          Container(
+            height: 150.h,
+            child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // number of items in each row
+                mainAxisSpacing: 20.0, // spacing between rows
+                crossAxisSpacing: 20.0, // spacing between columns
+              ),
+              padding: EdgeInsets.all(8.0), // padding around the grid
+              itemCount: items.length, // total number of items
+              itemBuilder: (context, index) {
+                return items[index];
+              },
+            ),
+          )
+        ],
       ),
     );
   }
 }
-
