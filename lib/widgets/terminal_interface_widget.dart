@@ -26,6 +26,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     'artemis',
     'cmdline',
   ];
+  final FocusNode _focusNode = FocusNode();
 
   void _handleCommand(String input) {
     if (_commands.contains(input)) {
@@ -37,6 +38,14 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     }
     _controller.clear();
     setState(() {});
+    _focusNode.requestFocus(); // Return focus to the text field
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,8 +73,8 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                             decoration: const BoxDecoration(
                               color: SiteColors.terminalPillBackgroundDark,
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),  // Adjust radius as needed
-                                bottomLeft: Radius.circular(20), // Adjust radius as needed
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
                               ),
                             ),
                             child: Padding(
@@ -76,20 +85,23 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                                   color: SiteColors.focusDark,
                                 ),
                               ),
-                            )
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text('To get to know me better, run one of the following commands:', style: GoogleFonts.lato(color: SiteColors.primaryDark)),
+                            child: Text(
+                              'To get to know me better, run one of the following commands:',
+                              style: GoogleFonts.lato(color: SiteColors.primaryDark),
+                            ),
                           ),
                         ],
                       ),
                       const Padding(
-                        padding: EdgeInsets.only(left: 16.0,top: 15.0),
+                        padding: EdgeInsets.only(left: 16.0, top: 15.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            //Replace these with Command widgets
+                            // Replace these with Command widgets
                             Command(serial: 1, command: 'origin', description: 'Origin story'),
                             Command(serial: 2, command: 'experience', description: 'My professional work experiences'),
                             Command(serial: 3, command: 'education', description: 'My Bachelor’s and Master’s degrees'),
@@ -109,7 +121,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                             .map((line) => Text(
                           line,
                           style: TextStyle(
-                            color: line.startsWith('Hold your horses!') ? Colors.red : Colors.white,
+                            color: line.startsWith('Hold your horses!')
+                                ? Colors.red
+                                : Colors.white,
                             fontFamily: 'Courier',
                           ),
                         ))
@@ -126,16 +140,25 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                     style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
                   ),
                   Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
-                      cursorColor: Colors.white,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                      ),
-                      onSubmitted: _handleCommand,
+                    child: Stack(
+                      children: [
+                        TextField(
+                          controller: _controller,
+                          focusNode: _focusNode,
+                          style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+                          cursorColor: Colors.transparent, // Hide the default cursor
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                          ),
+                          onSubmitted: _handleCommand,
+                        ),
+                        Positioned(
+                          left: 8.0 + _calculateCursorOffset(),
+                          child: BlinkingCursor(),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -144,6 +167,61 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
           ),
         ),
         backgroundColor: SiteColors.terminalBackgroundDark,
+      ),
+    );
+  }
+
+  double _calculateCursorOffset() {
+    final text = _controller.text;
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    return textPainter.width;
+  }
+}
+
+class BlinkingCursor extends StatefulWidget {
+  @override
+  _BlinkingCursorState createState() => _BlinkingCursorState();
+}
+
+class _BlinkingCursorState extends State<BlinkingCursor>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacity;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    _opacity = Tween<double>(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      });
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: _opacity.value,
+      child: Container(
+        width: 2,
+        height: 20,
+        color: Colors.white,
       ),
     );
   }

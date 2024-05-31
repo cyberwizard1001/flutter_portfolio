@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 delegate: SliverChildListDelegate(
                   [
                     SizedBox(height: 6.h),
-                    LandingSection(),
+                    const LandingSection(),
                     SizedBox(
                       height: 25.h,
                     ),
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 25.h,
                     ),
-                    TerminalInterfaceWidget()
+                    const AboutSection(),
 
                     //Add more sections here
                   ],
@@ -121,7 +121,8 @@ class LandingSection extends StatelessWidget {
               child: Text(
                 'View CV',
                 style: GoogleFonts.lato(
-                    color: SiteColors.primaryInverseDark, fontWeight: FontWeight.w600),
+                    color: SiteColors.primaryInverseDark,
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -183,80 +184,135 @@ class ProjectsSection extends StatelessWidget {
       URL: 'no',
     ),
     ProjectsCard(
-      projectName: 'Project 2',
-      projectDescription: 'This is a project description',
-      URL: 'no'
-    ),
+        projectName: 'Project 2',
+        projectDescription: 'This is a project description',
+        URL: 'no'),
     ProjectsCard(
-      projectName: 'Project 3',
-      projectDescription: 'This is a project description',
-      URL: 'no'
-    ),
+        projectName: 'Project 3',
+        projectDescription: 'This is a project description',
+        URL: 'no'),
     ProjectsCard(
-      projectName: 'Project 4',
-      projectDescription: 'This is a project description',
-      URL: 'no'
-    ),
+        projectName: 'Project 4',
+        projectDescription: 'This is a project description',
+        URL: 'no'),
     ProjectsCard(
-      projectName: 'Project 5',
-      projectDescription: 'This is a project description',
-      URL: 'no'
-    ),
+        projectName: 'Project 5',
+        projectDescription: 'This is a project description',
+        URL: 'no'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: SiteColors.primaryDark),
-          color: SiteColors.backgroundDark),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Projects',
+                  style: GoogleFonts.lato(
+                      fontSize: 20.sp, color: SiteColors.primaryDark),
+                ),
+                Text(
+                  'This is some text here that explains what I have in the projects section and is this long and wide',
+                  style: GoogleFonts.lato(color: SiteColors.primaryDark),
+                )
+              ],
+            ),
+            MaterialButton(
+              onPressed: () {},
+              child: Row(
                 children: [
                   Text(
-                    'Projects',
-                    style: GoogleFonts.lato(
-                        fontSize: 20.sp, color: SiteColors.primaryDark),
-                  ),
-                  Text(
-                    'This is some text here that explains what I have in the projects section and is this long and wide',
+                    'More',
                     style: GoogleFonts.lato(color: SiteColors.primaryDark),
+                  ),
+                  Icon(
+                    Icons.arrow_right_alt_rounded,
+                    color: SiteColors.primaryDark,
                   )
                 ],
               ),
-              MaterialButton(onPressed: (){},child: Row(
-                children: [
-                  Text('More',style: GoogleFonts.lato(color: SiteColors.primaryDark),),
-                  Icon(Icons.arrow_right_alt_rounded, color: SiteColors.primaryDark,)
-                ],
-              ),)
-            ],
-          ),
-          SizedBox(height: 5.h),
-          Container(
-            height: 150.h,
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // number of items in each row
-                mainAxisSpacing: 20.0, // spacing between rows
-                crossAxisSpacing: 20.0, // spacing between columns
-              ),
-              padding: EdgeInsets.all(8.0), // padding around the grid
-              itemCount: items.length, // total number of items
-              itemBuilder: (context, index) {
-                return items[index];
-              },
+            )
+          ],
+        ),
+        SizedBox(height: 5.h),
+        LayoutBuilder(builder: (context, constraints) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
+                  ? 2
+                  : 1, // number of items in each row
+              mainAxisSpacing: 20.0, // spacing between rows
+              crossAxisSpacing: 20.0, // spacing between columns
+              childAspectRatio: 1.0, // aspect ratio of each item (width/height
             ),
-          )
-        ],
-      ),
+            padding: const EdgeInsets.all(8.0),
+            // padding around the grid
+            itemCount: items.length,
+            // total number of items
+            itemBuilder: (context, index) {
+              return items[index];
+            },
+          );
+        })
+      ],
+    );
+  }
+}
+
+class AboutSection extends StatelessWidget {
+  const AboutSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'About',
+                  style: GoogleFonts.lato(
+                    color: SiteColors.primaryDark,
+                    fontSize: 20.sp,
+                  ),
+                ),
+                Text(
+                  'Nirmal /ˈnɪr.məl/',
+                  style: GoogleFonts.lato(
+                    color: SiteColors.primaryDark,
+                    fontSize: 15.sp,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 40.w,
+              child: Text(
+                'I\'m a digital designer and developer on a mission to bring visionary ideas to life. My journey began with lines of code and a dream, and today, I strive to craft digital landscapes that are so intuitive, the technology disappears into the experience.',
+                textAlign: TextAlign.end,
+                style: GoogleFonts.lato(
+                  color: SiteColors.primaryDark,
+                  fontSize: 12.sp,
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 7.h),
+        const TerminalInterfaceWidget()
+      ],
     );
   }
 }
