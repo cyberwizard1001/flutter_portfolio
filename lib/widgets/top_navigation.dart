@@ -1,11 +1,3 @@
-//Create a top navigation widget that is a rounded rectangle with 4 items and the selected item should have the inverse of the unselected ones and be shaped like a pill as a rounded rectangle
-// The top navigation should have the following items:
-// Home
-// About
-// Projects
-// Contact
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,7 +59,10 @@ class _TopNavigationState extends State<TopNavigation> {
               color: SiteColors.secondaryBackgroundDark,
               borderRadius: BorderRadius.circular(24),
             ),
-            width: 45.w,
+            constraints: BoxConstraints(maxWidth: 40.w, minWidth: 30.w),
+            //If the screen size is more than 1000, the width of the container is 35% of the screen width
+            //If the screen size is less than 1000, the width of the container is 45% of the screen width
+            width: MediaQuery.of(context).size.width > 1000 ? 35.w : 45.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

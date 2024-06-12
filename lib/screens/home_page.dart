@@ -5,8 +5,10 @@ import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/projects_card.dart';
+import '../widgets/skill_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -51,6 +53,14 @@ class _HomePageState extends State<HomePage> {
                       height: 25.h,
                     ),
                     const AboutSection(),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    SkillsSection(),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    const ConnectSection(),
 
                     //Add more sections here
                   ],
@@ -78,7 +88,7 @@ class LandingSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         // border: Border.all(color: SiteColors.primaryDark),
         color: SiteColors.backgroundDark,
       ),
@@ -100,7 +110,7 @@ class LandingSection extends StatelessWidget {
                       TextSpan(
                           text: 'digital realities',
                           style: GoogleFonts.lato(
-                            color: SiteColors.focusDark,
+                            color: SiteColors.primaryDark,
                             fontSize: 32.sp,
                             fontWeight: FontWeight.w600,
                           ))
@@ -231,7 +241,7 @@ class ProjectsSection extends StatelessWidget {
                     'More',
                     style: GoogleFonts.lato(color: SiteColors.primaryDark),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_right_alt_rounded,
                     color: SiteColors.primaryDark,
                   )
@@ -249,8 +259,8 @@ class ProjectsSection extends StatelessWidget {
               crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
                   ? 2
                   : 1, // number of items in each row
-              mainAxisSpacing: 20.0, // spacing between rows
-              crossAxisSpacing: 20.0, // spacing between columns
+              mainAxisSpacing: 25.0, // spacing between rows
+              crossAxisSpacing: 25.0, // spacing between columns
               childAspectRatio: 1.0, // aspect ratio of each item (width/height
             ),
             padding: const EdgeInsets.all(8.0),
@@ -314,5 +324,180 @@ class AboutSection extends StatelessWidget {
         const TerminalInterfaceWidget()
       ],
     );
+  }
+}
+
+class SkillsSection extends StatelessWidget {
+ SkillsSection({super.key});
+
+  final List<SkillCard> skills = [
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'UX Design',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'User Research',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'Figma',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'Analytics',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'Website builders',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'Flutter',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'AWS',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'CRMs',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'CI/CD',
+    ),
+    const SkillCard(
+      alignment: Alignment.center,
+      imageLocation: '',
+      skill: 'Linux',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [Text('Professional skills',style: GoogleFonts.lato(
+        color: SiteColors.primaryDark,
+        fontSize: 20.sp,
+      ),),
+        SizedBox(height: 5.h),
+        LayoutBuilder(builder: (context, constraints) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
+                  ? 4
+                  : 3, // number of items in each row
+              mainAxisSpacing: 20.0, // spacing between rows
+              crossAxisSpacing: 20.0, // spacing between columns
+              childAspectRatio: 0.95, // aspect ratio of each item (width/height
+            ),
+            padding: const EdgeInsets.all(8.0),
+            // padding around the grid
+            itemCount: skills.length,
+            // total number of items
+            itemBuilder: (context, index) {
+              return skills[index];
+            },
+          );
+        })
+    ]
+    );
+  }
+}
+
+
+class ConnectSection extends StatelessWidget {
+  const ConnectSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final Uri MediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
+    final Uri LinkedInUrl = Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
+
+    Future<void> _launchUrl(Uri _url) async {
+      if (!await launchUrl(_url)) {
+        throw Exception('Could not launch $_url');
+      }
+    }
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Text(
+        'Let\'s talk!',
+        style: GoogleFonts.lato(
+          color: SiteColors.primaryDark,
+          fontSize: 30.sp,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      SizedBox(height: 5.h),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('hello@nirmalk.co',
+              style: GoogleFonts.lato(
+                color: SiteColors.secondaryDark,
+                fontSize: 15.sp,
+              )),
+          const Icon(Icons.arrow_outward_rounded,color: SiteColors.primaryDark,)
+        ],
+      ),
+      SizedBox(height: 15.h),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('2023 © - Designed and developed by Nirmal Karthikeyan',
+              style: GoogleFonts.lato(
+                color: SiteColors.secondaryDark,
+                fontSize: 10.sp,
+              )),
+          SizedBox(
+            width: 20.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    _launchUrl(MediumUrl);
+                  },
+                  child: Text(
+                    'Portfolio site repository',
+                    style: GoogleFonts.lato(
+                      color: SiteColors.primaryDark,
+                      fontSize: 10.sp,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    _launchUrl(LinkedInUrl);
+                  },
+                  child: Text(
+                    'View my CV',
+                    style: GoogleFonts.lato(
+                      color: SiteColors.primaryDark,
+                      fontSize: 10.sp,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      SizedBox(height: 5.h),
+    ]);
   }
 }

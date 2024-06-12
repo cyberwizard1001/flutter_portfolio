@@ -35,7 +35,7 @@ class ProjectsCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),),
-          SizedBox(height: 2.h),
+          SizedBox(height: 1.h),
           Text(
             projectName,
             style: TextStyle(
@@ -44,11 +44,10 @@ class ProjectsCard extends StatelessWidget {
               color: SiteColors.primaryDark,
             ),
           ),
-          SizedBox(height: 1.h),
           Text(
            projectDescription,
             style: TextStyle(
-              fontSize: 10.sp,
+              fontSize: 12.sp,
               color: SiteColors.primaryDark,
             ),
           ),
