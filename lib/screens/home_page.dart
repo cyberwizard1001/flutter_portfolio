@@ -445,10 +445,11 @@ class ConnectSection extends StatelessWidget {
       SizedBox(height: 5.h),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('hello@nirmalk.co',
               style: GoogleFonts.lato(
-                color: SiteColors.secondaryDark,
+                color: SiteColors.primaryDark,
                 fontSize: 15.sp,
               )),
           const Icon(Icons.arrow_outward_rounded,color: SiteColors.primaryDark,)
