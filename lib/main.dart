@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/screens/home_page.dart';
+import 'package:flutter_portfolio/screens/project_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(const App(),);
 }
+
+final _router = GoRouter(routes: [
+    GoRoute(path: '/',
+      builder: (context,state) => const HomePage(),
+    ),
+    GoRoute(path: '/projects',
+      builder: (context,state) => const ProjectPage(),
+    )
+],
+);
 
 
 class App extends StatelessWidget {
@@ -15,13 +27,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, deviceType) {
-        return MaterialApp(
+        return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'Nirmal Karthikeyan',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const HomePage(),
+          routerConfig: _router,
         );
       },
     );

@@ -3,6 +3,7 @@ import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -234,7 +235,9 @@ class ProjectsSection extends StatelessWidget {
               ],
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/projects');
+              },
               child: Row(
                 children: [
                   Text(
