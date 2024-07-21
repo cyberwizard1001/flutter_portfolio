@@ -190,26 +190,14 @@ class ProjectsSection extends StatelessWidget {
 
   final List<ProjectsCard> items = [
     ProjectsCard(
-      projectName: 'Project 1',
-      projectDescription: 'This is a project description',
-      URL: 'no',
+      projectID: 0,
     ),
     ProjectsCard(
-        projectName: 'Project 2',
-        projectDescription: 'This is a project description',
-        URL: 'no'),
+      projectID: 1,
+    ),
     ProjectsCard(
-        projectName: 'Project 3',
-        projectDescription: 'This is a project description',
-        URL: 'no'),
-    ProjectsCard(
-        projectName: 'Project 4',
-        projectDescription: 'This is a project description',
-        URL: 'no'),
-    ProjectsCard(
-        projectName: 'Project 5',
-        projectDescription: 'This is a project description',
-        URL: 'no'),
+      projectID: 2,
+    ),
   ];
 
   @override
@@ -236,7 +224,7 @@ class ProjectsSection extends StatelessWidget {
             ),
             MaterialButton(
               onPressed: () {
-                context.go('/projects');
+                //context.go('/projects');
               },
               child: Row(
                 children: [
@@ -331,7 +319,7 @@ class AboutSection extends StatelessWidget {
 }
 
 class SkillsSection extends StatelessWidget {
- SkillsSection({super.key});
+  SkillsSection({super.key});
 
   final List<SkillCard> skills = [
     const SkillCard(
@@ -388,54 +376,55 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [Text('Professional skills',style: GoogleFonts.lato(
-        color: SiteColors.primaryDark,
-        fontSize: 20.sp,
-      ),),
-        SizedBox(height: 5.h),
-        LayoutBuilder(builder: (context, constraints) {
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
-                  ? 4
-                  : 3, // number of items in each row
-              mainAxisSpacing: 20.0, // spacing between rows
-              crossAxisSpacing: 20.0, // spacing between columns
-              childAspectRatio: 0.95, // aspect ratio of each item (width/height
-            ),
-            padding: const EdgeInsets.all(8.0),
-            // padding around the grid
-            itemCount: skills.length,
-            // total number of items
-            itemBuilder: (context, index) {
-              return skills[index];
-            },
-          );
-        })
-    ]
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        'Professional skills',
+        style: GoogleFonts.lato(
+          color: SiteColors.primaryDark,
+          fontSize: 20.sp,
+        ),
+      ),
+      SizedBox(height: 5.h),
+      LayoutBuilder(builder: (context, constraints) {
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
+                ? 4
+                : 3, // number of items in each row
+            mainAxisSpacing: 20.0, // spacing between rows
+            crossAxisSpacing: 20.0, // spacing between columns
+            childAspectRatio: 0.95, // aspect ratio of each item (width/height
+          ),
+          padding: const EdgeInsets.all(8.0),
+          // padding around the grid
+          itemCount: skills.length,
+          // total number of items
+          itemBuilder: (context, index) {
+            return skills[index];
+          },
+        );
+      })
+    ]);
   }
 }
-
 
 class ConnectSection extends StatelessWidget {
   const ConnectSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final Uri MediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
-    final Uri LinkedInUrl = Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
+    final Uri LinkedInUrl =
+        Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
 
     Future<void> _launchUrl(Uri _url) async {
       if (!await launchUrl(_url)) {
         throw Exception('Could not launch $_url');
       }
     }
+
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Text(
         'Let\'s talk!',
@@ -455,7 +444,10 @@ class ConnectSection extends StatelessWidget {
                 color: SiteColors.primaryDark,
                 fontSize: 15.sp,
               )),
-          const Icon(Icons.arrow_outward_rounded,color: SiteColors.primaryDark,)
+          const Icon(
+            Icons.arrow_outward_rounded,
+            color: SiteColors.primaryDark,
+          )
         ],
       ),
       SizedBox(height: 15.h),
