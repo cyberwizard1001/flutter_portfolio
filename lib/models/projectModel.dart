@@ -14,5 +14,5 @@ class ProjectModel {
 
   final List<Widget> furtherReadingItems;
 
-  ProjectModel(this.headingImageURL, this.category, this.description, this.theChallenge, this.myRole, this.theOutcome, this.phaseList, this.furtherReadingItems, {required this.projectName,});
+  ProjectModel({required this.projectName,required this.headingImageURL, required this.category, required this.description,required this.theChallenge, required this.myRole, required this.theOutcome, required this.phaseList, required this.furtherReadingItems, });
 }

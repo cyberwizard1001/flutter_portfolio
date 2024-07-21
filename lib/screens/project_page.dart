@@ -85,46 +85,21 @@ class _ProjectPageState extends State<ProjectPage> {
                       headingImageURL: headingImageURL,
                       category: category,
                       description: description
-                          //'The "Enhancing User Experience for Online Grocery Shopping" project aims to revamp the user interface and overall experience of an established online grocery shopping platform. With the increasing shift towards digital shopping, it is crucial to provide an intuitive, efficient, and enjoyable experience that meets the evolving needs of users.',
                     ),
                     SizedBox(
                       height: 25.h,
                     ),
                     ThreeKeyThings(
                       theChallenge: theChallenge,
-                          //'The primary challenge in enhancing the online grocery shopping experience lies in addressing the diverse needs and expectations of a wide user base while ensuring a seamless, efficient, and enjoyable journey from start to finish. Users encounter frustration with complex navigation, inefficient search functionality, and cumbersome checkout processes, which can lead to cart abandonment and decreased customer loyalty. Additionally, the growing reliance on mobile devices for shopping necessitates a responsive and intuitive mobile interface. Balancing these elements while integrating personalized recommendations and maintaining fast load times requires a holistic approach to UX design that considers usability, accessibility, and scalability. ',
                       myRole: myRole,
-                          //'The primary challenge in enhancing the online grocery shopping experience lies in addressing the diverse needs and expectations of a wide user base while ensuring a seamless, efficient, and enjoyable journey from start to finish. Users encounter frustration with complex navigation, inefficient search functionality, and cumbersome checkout processes, which can lead to cart abandonment and decreased customer loyalty. Additionally, the growing reliance on mobile devices for shopping necessitates a responsive and intuitive mobile interface. ',
                       theOutcome: theOutcome,
-                          //'The primary challenge in enhancing the online grocery shopping experience lies in addressing the diverse needs and expectations of a wide user base while ensuring a seamless, efficient, and enjoyable journey from start to finish. Users encounter frustration with complex navigation, inefficient search functionality, and cumbersome checkout processes, which can lead to cart abandonment and decreased customer loyalty. Additionally, the growing reliance on mobile devices for shopping necessitates a responsive and intuitive mobile interface.',
                     ),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    // const AboutSection(),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    // SkillsSection(),
                     SizedBox(
                       height: 25.h,
                     ),
                     Column(
                       children: phaseList
                     ),
-                    // PhaseComponent(
-                    //     phaseCount: 'PHASE I',
-                    //     phaseHeading: 'Large Heading',
-                    //     sectionComponents: const [
-                    //       SectionComponent(
-                    //         sectionTitle: 'Section Title',
-                    //         sectionDescription:
-                    //             'As part of our UX project to enhance the online grocery shopping experience, we conducted a collaborative user journey mapping workshop. This co-design activity brought together diverse stakeholders, including actual users, designers, developers, and product managers, to map out the current user journey and identify pain points and opportunities for improvement. Participants shared their experiences, expectations, and frustrations, which helped us gain valuable insights into the user perspective. Through interactive discussions and hands-on activities, such as sketching and prototyping, we collaboratively envisioned new features and enhancements. ',
-                    //         sectionHighlight:
-                    //             'This inclusive approach ensured that the redesign would be deeply informed by real user needs and preferences, fostering a sense of ownership and alignment among all team members.',
-                    //         sectionImageURL: 'no',
-                    //       ),
-                    //     ]),
                     SizedBox(height: 15.h,),
                     FurtherReadingComponent(furtherReadingItems: furtherReadingItems),
                     SizedBox(
@@ -368,165 +343,47 @@ class ThreeKeyThings extends StatelessWidget {
   }
 }
 
-class SectionComponent extends StatelessWidget {
-  const SectionComponent(
-      {super.key,
-      required this.sectionTitle,
-      required this.sectionDescription,
-      required this.sectionHighlight,
-      required this.sectionImageURL});
-
-  final String sectionTitle;
-  final String sectionDescription;
-  final String sectionHighlight;
-  final String sectionImageURL;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 40.w,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                sectionTitle,
-                style: GoogleFonts.lato(
-                  color: SiteColors.primaryDark,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 2.h),
-              Text(
-                sectionDescription,
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.lato(
-                  color: SiteColors.primaryDark,
-                  fontSize: 13.sp,
-                ),
-              ),
-              SizedBox(height: 2.h),
-              if (sectionHighlight != '')
-                Container(
-                  width: 40.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: SiteColors.primaryDark,
-                    ),
-                  ),
-                  padding: EdgeInsets.all(1.w),
-                  child: Text(
-                    sectionHighlight,
-                    style: GoogleFonts.lato(
-                      color: SiteColors.primaryDark,
-                      fontSize: 13.sp,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-        SizedBox(width: 5.w),
-        if (sectionImageURL != 'no')
-          SizedBox(
-              height: 65.h,
-              width: 45.w,
-              child: Image.network(
-                sectionImageURL,
-                fit: BoxFit.cover,
-              )),
-        if (sectionImageURL == 'no')
-          Container(
-            height: 65.h,
-            width: 45.w,
-            decoration: const BoxDecoration(
-              color: Colors.red,
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-class PhaseComponent extends StatelessWidget {
-  PhaseComponent(
-      {super.key,
-      required this.phaseCount,
-      required this.phaseHeading,
-      required this.sectionComponents});
-
-  final String phaseCount;
-  final String phaseHeading;
-  final List<SectionComponent> sectionComponents;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          phaseCount,
-          style: GoogleFonts.lato(
-            color: SiteColors.primaryDark,
-            fontSize: 14.sp,
-            letterSpacing: 1.5,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-        Text(
-          phaseHeading,
-          style: GoogleFonts.lato(
-            color: SiteColors.primaryDark,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(height: 15.h),
-        Column(
-          children: sectionComponents,
-        ),
-        SizedBox(height: 15.h),
-        const Divider(
-          color: SiteColors.primaryDark,
-        ),
-      ],
-    );
-  }
-}
-
 class FurtherReadingComponent extends StatelessWidget {
   const FurtherReadingComponent({super.key, required this.furtherReadingItems});
 
   final List<Widget> furtherReadingItems;
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
-              ? 2
-              : 1, // number of items in each row
-          mainAxisSpacing: 25.0, // spacing between rows
-          crossAxisSpacing: 25.0, // spacing between columns
-          childAspectRatio: 1.0, // aspect ratio of each item (width/height
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Continue Reading',
+          style: GoogleFonts.lato(
+            color: SiteColors.primaryDark,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w500,
+          ),
         ),
-        padding: const EdgeInsets.all(8.0),
-        // padding around the grid
-        itemCount: furtherReadingItems.length,
-        // total number of items
-        itemBuilder: (context, index) {
-          return furtherReadingItems[index];
-        },
-      );
-    });
+        SizedBox(height: 3.h),
+        LayoutBuilder(builder: (context, constraints) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: (MediaQuery.sizeOf(context).width > 420)
+                  ? 2
+                  : 1, // number of items in each row
+              mainAxisSpacing: 25.0, // spacing between rows
+              crossAxisSpacing: 25.0, // spacing between columns
+              childAspectRatio: 1.0, // aspect ratio of each item (width/height
+            ),
+            padding: const EdgeInsets.all(8.0),
+            // padding around the grid
+            itemCount: furtherReadingItems.length,
+            // total number of items
+            itemBuilder: (context, index) {
+              return furtherReadingItems[index];
+            },
+          );
+        }),
+      ],
+    );
   }
 }
 

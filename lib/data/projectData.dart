@@ -1,8 +1,8 @@
-//This file will be used to store objects of class projectModel and store data required for the project page
-
-import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/widgets/phase_widget.dart';
+import 'package:flutter_portfolio/widgets/projects_card.dart';
 
 import '../models/projectModel.dart';
+import '../widgets/section_widget.dart';
 
 
 
@@ -18,62 +18,91 @@ class ProjectData {
 
 }
 
-final ProjectModel project1 = ProjectModel(
-  'no',
-  'Mobile App',
-  'A mobile app that helps users to find the best places to eat in their city',
-  'The challenge was to create a mobile app that would help users find the best places to eat in their city. The app needed to be user-friendly and easy to navigate.',
-  'My role was to design the user interface and user experience of the app. I also worked on the front-end development of the app.',
-  'The outcome was a user-friendly app that helped users find the best places to eat in their city. The app received positive feedback from users and was featured in the app store.',
-  [
-    Text('Phase 1: Research'),
-    Text('Phase 2: Design'),
-    Text('Phase 3: Development'),
-    Text('Phase 4: Testing'),
+final project1 = ProjectModel(
+  projectName: 'Project 1',
+  headingImageURL: 'no',
+  category: 'Category 1',
+  description: 'Description 1',
+  theChallenge: 'The Challenge 1',
+  myRole: 'My Role 1',
+  theOutcome: 'The Outcome 1',
+  phaseList: [
+    const PhaseComponent(
+      phaseCount: '01',
+      phaseHeading: 'Phase 1',
+      sectionComponents: [
+        SectionComponent(
+          sectionTitle: 'Section 1 Title', sectionDescription: 'Section 1 Description', sectionHighlight: 'Section 1 Highlight', sectionImageURL: 'no',
+        ),
+        SectionComponent(
+          sectionTitle: 'Section 2 Title', sectionDescription: 'Section 2 Description', sectionHighlight: 'Section 2 Highlight', sectionImageURL: 'no',
+        ),
+
+      ],
+    ),
+
   ],
-  [
-    Text('Further reading: How to design a user-friendly app'),
-    Text('Further reading: The importance of user experience in app design'),
+  furtherReadingItems: [
+    ProjectsCard(projectID: 1),
+    ProjectsCard(projectID: 2),
   ],
-  projectName: 'Foodie App',
 );
 
-final ProjectModel project2 = ProjectModel(
-  'no',
-  'Web App',
-  'A web app that helps users to track their fitness goals and progress',
-  'The challenge was to create a web app that would help users track their fitness goals and progress. The app needed to be easy to use and provide users with valuable insights into their fitness journey.',
-  'My role was to design the user interface and user experience of the app. I also worked on the front-end development of the app.',
-  'The outcome was a web app that helped users track their fitness goals and progress. The app received positive feedback from users and was featured in the app store.',
-  [
-    Text('Phase 1: Research'),
-    Text('Phase 2: Design'),
-    Text('Phase 3: Development'),
-    Text('Phase 4: Testing'),
-  ],
-  [
-    Text('Further reading: How to design a user-friendly web app'),
-    Text('Further reading: The importance of user experience in web app design'),
-  ],
-  projectName: 'Fitness Tracker',
-);
+final project2 = ProjectModel(
+  projectName: 'Project 2',
+  headingImageURL: 'no',
+  category: 'Category 2',
+  description: 'Description 2',
+  theChallenge: 'The Challenge 2',
+  myRole: 'My Role 2',
+  theOutcome: 'The Outcome 2',
+  phaseList: [
+    const PhaseComponent(
+      phaseCount: '01',
+      phaseHeading: 'Phase 1',
+      sectionComponents: [
+        SectionComponent(
+          sectionTitle: 'Section 1 Title', sectionDescription: 'Section 1 Description', sectionHighlight: 'Section 1 Highlight', sectionImageURL: 'no',
+        ),
+        SectionComponent(
+          sectionTitle: 'Section 2 Title', sectionDescription: 'Section 2 Description', sectionHighlight: 'Section 2 Highlight', sectionImageURL: 'no',
+        ),
 
-final ProjectModel project3 = ProjectModel(
-  'no',
-  'Mobile App',
-  'A mobile app that helps users to find the best places to eat in their city',
-  'The challenge was to create a mobile app that would help users find the best places to eat in their city. The app needed to be user-friendly and easy to navigate.',
-  'My role was to design the user interface and user experience of the app. I also worked on the front-end development of the app.',
-  'The outcome was a user-friendly app that helped users find the best places to eat in their city. The app received positive feedback from users and was featured in the app store.',
-  [
-    Text('Phase 1: Research'),
-    Text('Phase 2: Design'),
-    Text('Phase 3: Development'),
-    Text('Phase 4: Testing'),
+      ],
+    ),
+
   ],
-  [
-    Text('Further reading: How to design a user-friendly app'),
-    Text('Further reading: The importance of user experience in app design'),
+  furtherReadingItems: [
+    ProjectsCard(projectID: 1),
+    ProjectsCard(projectID: 2),
+  ],);
+
+final project3 = ProjectModel(
+  projectName: 'Project 3',
+  headingImageURL: 'no',
+  category: 'Category 3',
+  description: 'Description 3',
+  theChallenge: 'The Challenge 3',
+  myRole: 'My Role 3',
+  theOutcome: 'The Outcome 3',
+  phaseList: [
+    const PhaseComponent(
+      phaseCount: '01',
+      phaseHeading: 'Phase 1',
+      sectionComponents: [
+        SectionComponent(
+          sectionTitle: 'Section 1 Title', sectionDescription: 'Section 1 Description', sectionHighlight: 'Section 1 Highlight', sectionImageURL: 'no',
+        ),
+        SectionComponent(
+          sectionTitle: 'Section 2 Title', sectionDescription: 'Section 2 Description', sectionHighlight: 'Section 2 Highlight', sectionImageURL: 'no',
+        ),
+
+      ],
+    ),
+
   ],
-  projectName: 'Foodie App',
+  furtherReadingItems: [
+    ProjectsCard(projectID: 1),
+    ProjectsCard(projectID: 2),
+  ],
 );
