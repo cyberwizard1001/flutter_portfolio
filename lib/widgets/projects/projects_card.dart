@@ -3,8 +3,8 @@ import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../data/projectData.dart';
-import '../models/projectModel.dart';
+import '../../data/project_data.dart';
+import '../../models/project_model.dart';
 
 class ProjectsCard extends StatefulWidget {
 

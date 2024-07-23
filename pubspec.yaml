@@ -41,7 +41,9 @@ dependencies:
   flutter_sticky_header:
   audioplayers:
   url_launcher:
+  web_smooth_scroll:
   go_router: ^14.2.0
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:

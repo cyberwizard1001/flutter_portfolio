@@ -75,12 +75,12 @@ class _TopNavigationState extends State<TopNavigationSingleLine> {
                     color: SiteColors.primaryDark,
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold)),
-            onPressed: () {},
+            onPressed: () {
+              context.go('/');
+            },
           ),
           Container(
             constraints: BoxConstraints(maxWidth: 60.w, minWidth: 30.w),
-            //If the screen size is more than 1000, the width of the container is 35% of the screen width
-            //If the screen size is less than 1000, the width of the container is 45% of the screen width
             width: MediaQuery.of(context).size.width > 1000 ? 35.w : 45.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

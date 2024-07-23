@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
-import 'package:flutter_portfolio/widgets/terminal_interface_widget.dart';
+import 'package:flutter_portfolio/widgets/home/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
-import '../widgets/projects_card.dart';
-import '../widgets/skill_card.dart';
+import '../utils/responsive.dart';
+import '../widgets/projects/projects_card.dart';
+import '../widgets/projects/skill_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -31,16 +33,33 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SiteColors.backgroundDark,
+      appBar: Responsive.isDesktop(context)
+          ? null
+          : AppBar(
+        backgroundColor: SiteColors.backgroundDark,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu),
+          ),
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
         child: LayoutBuilder(builder: (context, constraints) {
-          return CustomScrollView(slivers: [
+          return CustomScrollView(
+            controller: _scrollController,
+              slivers: [
             SliverStickyHeader(
-              header: const TopNavigation(),
+              header: Responsive.isDesktop(context) ? const TopNavigation() : null,
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   [

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/widgets/section_widget.dart';
+import 'package:flutter_portfolio/widgets/projects/section_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
 class PhaseComponent extends StatelessWidget {
   const PhaseComponent(

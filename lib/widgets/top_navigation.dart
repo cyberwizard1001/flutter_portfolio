@@ -60,8 +60,6 @@ class _TopNavigationState extends State<TopNavigation> {
               borderRadius: BorderRadius.circular(24),
             ),
             constraints: BoxConstraints(maxWidth: 40.w, minWidth: 30.w),
-            //If the screen size is more than 1000, the width of the container is 35% of the screen width
-            //If the screen size is less than 1000, the width of the container is 45% of the screen width
             width: MediaQuery.of(context).size.width > 1000 ? 35.w : 45.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
