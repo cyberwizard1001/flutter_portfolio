@@ -28,6 +28,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/project_data.dart';
 import 'package:flutter_portfolio/screens/home_page.dart';
 import 'package:flutter_portfolio/screens/project_page.dart';
+import 'package:flutter_portfolio/utils/pdf_viewer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -58,7 +59,11 @@ final _router = GoRouter(
           return ProjectPage(
             projectID: projectID,
           );
-        })
+        }),
+    GoRoute(
+      path: '/cv',
+      builder: (context, state) => const PdfViewer(),
+    )
   ],
 );
 

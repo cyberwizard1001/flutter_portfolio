@@ -22,6 +22,7 @@ import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/home/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'dart:html' as html;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -167,7 +168,10 @@ class LandingSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(40.0)),
               ),
-              onPressed: () {},
+              onPressed: () {
+                // context.push('/cv');
+                html.window.open('/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
+              },
               child: Text(
                 'View CV',
                 style: GoogleFonts.lato(
@@ -455,6 +459,8 @@ class ConnectSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Uri mediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
+    final Uri repositoryUrl =
+        Uri.parse('https://github.com/cyberwizard1001/flutter_portfolio');
     final Uri linkedInUrl =
         Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
 
@@ -505,7 +511,7 @@ class ConnectSection extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    customLaunchUrl(mediumUrl);
+                    customLaunchUrl(repositoryUrl);
                   },
                   child: Text(
                     'Portfolio site repository',
