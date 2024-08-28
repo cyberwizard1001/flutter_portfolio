@@ -29,14 +29,28 @@ jobs:
       - name: Build Flutter web
         run: flutter build web --release
 
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
+      # Deploy to cyberwizard1001.github.io repository
+      - name: Deploy to GitHub Pages repo
         if: github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_REPO: cyberwizard1001/cyberwizard1001.github.io
+          TARGET_BRANCH: main
+          TARGET_DIR: build/web
+        run: |
+          # Clone the target repository
+          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git target_repo
+          cd target_repo
 
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+          # Remove all files from the target repository
+          git rm -rf .
+
+          # Copy the new build files into the target repository
+          cp -r ../${TARGET_DIR}/* .
+
+          # Commit and push the changes to the target repository
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy Flutter web app from ${GITHUB_REPOSITORY}@${GITHUB_SHA}"
+          git push origin ${TARGET_BRANCH}
