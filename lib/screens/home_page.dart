@@ -458,7 +458,6 @@ class ConnectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Uri mediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
     final Uri repositoryUrl =
         Uri.parse('https://github.com/cyberwizard1001/flutter_portfolio');
     final Uri linkedInUrl =
