@@ -170,7 +170,7 @@ class LandingSection extends StatelessWidget {
               ),
               onPressed: () {
                 // context.push('/cv');
-                html.window.open('assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
+                html.window.open('https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
               },
               child: Text(
                 'View CV',
