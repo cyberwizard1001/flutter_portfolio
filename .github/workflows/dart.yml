@@ -1,0 +1,42 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup Dart and Flutter
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0' # Adjust to your Flutter version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run analysis
+        run: dart analyze
+
+      # Build the Flutter web project
+      - name: Build Flutter web
+        run: flutter build web --release
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
