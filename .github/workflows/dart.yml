@@ -33,13 +33,13 @@ jobs:
       - name: Deploy to GitHub Pages repo
         if: github.ref == 'refs/heads/master'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.PAT }}
           TARGET_REPO: cyberwizard1001/cyberwizard1001.github.io
           TARGET_BRANCH: main
           TARGET_DIR: build/web
         run: |
           # Clone the target repository
-          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git target_repo
+          git clone https://x-access-token:${PAT}@github.com/${TARGET_REPO}.git target_repo
           cd target_repo
 
           # Remove all files from the target repository
