@@ -40,12 +40,15 @@ class SectionComponent extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 2.h),
-                Text(
-                  sectionDescription,
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.lato(
-                    color: SiteColors.primaryDark,
-                    fontSize: 13.sp,
+                SizedBox(
+                  height: 48.h,
+                  child: Text(
+                    sectionDescription,
+                    textAlign: TextAlign.justify,
+                    style: GoogleFonts.lato(
+                      color: SiteColors.primaryDark,
+                      fontSize: 13.sp,
+                    ),
                   ),
                 ),
                 SizedBox(height: 2.h),

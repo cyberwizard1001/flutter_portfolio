@@ -1,9 +1,27 @@
+
+/// HomePage.dart - Home Page of the website
+///
+/// This file implements the main landing page of the portfolio website.
+/// The HomePage widget includes the following sections:
+/// - LandingSection: Introduces the portfolio and provides a brief intro
+/// - ProjectsSection: Showcases key projects
+/// - AboutSection: Describes the developer and their journey
+/// - SkillsSection: Highlights professional skills
+/// - ConnectSection: Provides contact and social media links
+///
+/// The page is responsive and handles different layouts for desktop and
+/// mobile views. Smooth scrolling, sticky headers, and navigation are
+/// implemented for an enhanced user experience.
+///
+/// Author: Nirmal Karthikeyan
+library;
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/home/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,6 +30,8 @@ import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import '../utils/responsive.dart';
 import '../widgets/projects/projects_card.dart';
 import '../widgets/projects/skill_card.dart';
+
+
 
 class HomePage extends StatefulWidget {
   const HomePage({

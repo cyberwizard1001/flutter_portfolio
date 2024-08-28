@@ -1,3 +1,19 @@
+/// ProjectPage.dart - Detailed Project Page of the website
+///
+/// This file implements the detailed project page for the portfolio website.
+/// The ProjectPage widget dynamically displays information for a selected project
+/// based on the project ID provided. The page includes the following sections:
+/// - LandingSection: Introduces the project with its name, category, description, and image
+/// - ThreeKeyThings: Highlights the challenge, the developer's role, and the outcome
+/// - PhaseList: Breaks down the project into various phases or milestones
+/// - FurtherReadingComponent: Suggests additional reading or related projects
+/// - ConnectSection: Provides contact and social media links
+///
+///
+/// Author: Nirmal Karthikeyan
+library;
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/home/top_navigation_single_line.dart';

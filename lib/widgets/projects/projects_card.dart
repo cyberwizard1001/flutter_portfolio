@@ -40,7 +40,8 @@ class _ProjectsCardState extends State<ProjectsCard> {
         onTap: () {
           debugPrint('Project card tapped');
           var route = '/projects/${widget.projectID}';
-          context.go(route);
+          debugPrint('Navigating to $route');
+          context.push(route);
         },
         child: SizedBox(
           height: 20.h,
