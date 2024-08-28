@@ -4,13 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../data/project_data.dart';
-import '../../models/project_model.dart';
+
 
 class ProjectsCard extends StatefulWidget {
 
   final int projectID;
 
-   ProjectsCard({super.key, required this.projectID,});
+   const ProjectsCard({super.key, required this.projectID,});
 
   @override
   State<ProjectsCard> createState() => _ProjectsCardState();
@@ -22,14 +22,14 @@ class _ProjectsCardState extends State<ProjectsCard> {
 
   late final String projectDescription;
 
-  late final String URL;
+  late final String url;
 
   @override
   void initState() {
     super.initState();
     projectName = ProjectData.projects[widget.projectID].projectName;
     projectDescription = ProjectData.projects[widget.projectID].description;
-    URL = ProjectData.projects[widget.projectID].headingImageURL;
+    url = ProjectData.projects[widget.projectID].headingImageURL;
   }
 
   @override
@@ -49,15 +49,15 @@ class _ProjectsCardState extends State<ProjectsCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if(URL != 'no')
+              if(url != 'no')
                 Expanded(
                   child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Image.network(URL, fit: BoxFit.cover,)),
+                      child: Image.network(url, fit: BoxFit.cover,)),
                 ),
-              if(URL == 'no')
+              if(url == 'no')
               Expanded(
                 child: Container(
                 decoration: BoxDecoration(

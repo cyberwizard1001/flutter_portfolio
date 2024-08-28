@@ -43,8 +43,8 @@ final project1 = ProjectModel(
 
   ],
   furtherReadingItems: [
-    ProjectsCard(projectID: 1),
-    ProjectsCard(projectID: 2),
+    const ProjectsCard(projectID: 1),
+    const ProjectsCard(projectID: 2),
   ],
 );
 
@@ -73,8 +73,8 @@ final project2 = ProjectModel(
 
   ],
   furtherReadingItems: [
-    ProjectsCard(projectID: 1),
-    ProjectsCard(projectID: 2),
+    const ProjectsCard(projectID: 1),
+    const ProjectsCard(projectID: 2),
   ],);
 
 final project3 = ProjectModel(
@@ -102,8 +102,8 @@ final project3 = ProjectModel(
 
   ],
   furtherReadingItems: [
-    ProjectsCard(projectID: 1),
-    ProjectsCard(projectID: 2),
+    const ProjectsCard(projectID: 1),
+    const ProjectsCard(projectID: 2),
   ],
 );
 
@@ -132,8 +132,8 @@ final project4 = ProjectModel(
 
   ],
   furtherReadingItems: [
-    ProjectsCard(projectID: 1),
-    ProjectsCard(projectID: 2),
+    const ProjectsCard(projectID: 1),
+    const ProjectsCard(projectID: 2),
   ],
 );
 
@@ -162,7 +162,7 @@ final project5 = ProjectModel(
 
   ],
   furtherReadingItems: [
-    ProjectsCard(projectID: 1),
-    ProjectsCard(projectID: 2),
+    const ProjectsCard(projectID: 1),
+    const ProjectsCard(projectID: 2),
   ],
 );

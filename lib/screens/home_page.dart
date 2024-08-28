@@ -25,7 +25,7 @@ import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:web_smooth_scroll/web_smooth_scroll.dart';
+
 
 import '../utils/responsive.dart';
 import '../widgets/projects/projects_card.dart';
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class LandingSection extends StatelessWidget {
-  const LandingSection({Key? key}) : super(key: key);
+  const LandingSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +203,7 @@ class LandingSection extends StatelessWidget {
                   ],
                 ),
               ),
-              const Expanded(child: SizedBox(), flex: 1),
+              const Expanded(flex: 1, child: SizedBox()),
               Expanded(
                 flex: 1,
                 child: Text(
@@ -228,13 +228,13 @@ class ProjectsSection extends StatelessWidget {
   ProjectsSection({super.key});
 
   final List<ProjectsCard> items = [
-    ProjectsCard(
+    const ProjectsCard(
       projectID: 0,
     ),
-    ProjectsCard(
+    const ProjectsCard(
       projectID: 1,
     ),
-    ProjectsCard(
+    const ProjectsCard(
       projectID: 2,
     ),
   ];
@@ -454,13 +454,13 @@ class ConnectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Uri MediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
-    final Uri LinkedInUrl =
+    final Uri mediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
+    final Uri linkedInUrl =
         Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
 
-    Future<void> _launchUrl(Uri _url) async {
-      if (!await launchUrl(_url)) {
-        throw Exception('Could not launch $_url');
+    Future<void> customLaunchUrl(Uri url) async {
+      if (!await launchUrl(url)) {
+        throw Exception('Could not launch $url');
       }
     }
 
@@ -505,7 +505,7 @@ class ConnectSection extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    _launchUrl(MediumUrl);
+                    customLaunchUrl(mediumUrl);
                   },
                   child: Text(
                     'Portfolio site repository',
@@ -517,7 +517,7 @@ class ConnectSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    _launchUrl(LinkedInUrl);
+                    customLaunchUrl(linkedInUrl);
                   },
                   child: Text(
                     'View my CV',

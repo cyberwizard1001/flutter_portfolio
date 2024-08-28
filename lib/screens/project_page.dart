@@ -408,13 +408,13 @@ class ConnectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Uri MediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
-    final Uri LinkedInUrl =
+    final Uri mediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
+    final Uri linkedInUrl =
         Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
 
-    Future<void> _launchUrl(Uri _url) async {
-      if (!await launchUrl(_url)) {
-        throw Exception('Could not launch $_url');
+    Future<void> customLaunchUrl(Uri url) async {
+      if (!await launchUrl(url)) {
+        throw Exception('Could not launch $url');
       }
     }
 
@@ -435,7 +435,7 @@ class ConnectSection extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    _launchUrl(MediumUrl);
+                    customLaunchUrl(mediumUrl);
                   },
                   child: Text(
                     'Portfolio site repository',
@@ -447,7 +447,7 @@ class ConnectSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    _launchUrl(LinkedInUrl);
+                    customLaunchUrl(linkedInUrl);
                   },
                   child: Text(
                     'View my CV',

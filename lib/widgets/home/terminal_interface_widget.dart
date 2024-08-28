@@ -135,7 +135,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     '>',
                     style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
                   ),
@@ -145,9 +145,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                         TextField(
                           controller: _controller,
                           focusNode: _focusNode,
-                          style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Courier'),
                           cursorColor: Colors.transparent, // Hide the default cursor
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             isDense: true,
                             contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -156,7 +156,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                         ),
                         Positioned(
                           left: 8.0 + _calculateCursorOffset(),
-                          child: BlinkingCursor(),
+                          child: const BlinkingCursor(),
                         ),
                       ],
                     ),
@@ -176,7 +176,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
-        style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+        style: const TextStyle(color: Colors.white, fontFamily: 'Courier'),
       ),
       textDirection: TextDirection.ltr,
     );
@@ -186,11 +186,13 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
 }
 
 class BlinkingCursor extends StatefulWidget {
+  const BlinkingCursor({super.key});
+
   @override
-  _BlinkingCursorState createState() => _BlinkingCursorState();
+  BlinkingCursorState createState() => BlinkingCursorState();
 }
 
-class _BlinkingCursorState extends State<BlinkingCursor>
+class BlinkingCursorState extends State<BlinkingCursor>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;

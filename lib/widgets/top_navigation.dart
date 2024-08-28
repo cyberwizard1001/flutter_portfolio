@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class TopNavigation extends StatefulWidget {
-  const TopNavigation({Key? key}) : super(key: key);
+  const TopNavigation({super.key});
 
   @override
   State<TopNavigation> createState() => _TopNavigationState();
