@@ -170,7 +170,7 @@ class LandingSection extends StatelessWidget {
               ),
               onPressed: () {
                 // context.push('/cv');
-                html.window.open('/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
+                html.window.open('assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
               },
               child: Text(
                 'View CV',
