@@ -19,9 +19,6 @@ class _TopNavigationState extends State<TopNavigationSingleLine> {
       case 0:
         GoRouter.of(context).go('/');
         break;
-      case 1:
-        GoRouter.of(context).go('/about');
-        break;
       case 2:
         GoRouter.of(context).go('/projects');
         break;
@@ -37,7 +34,7 @@ class _TopNavigationState extends State<TopNavigationSingleLine> {
         overlayColor: WidgetStateProperty.resolveWith<Color>(
           (Set<WidgetState> states) {
             if (states.contains(WidgetState.hovered)) {
-              return SiteColors.secondaryBackgroundDark;
+              return SiteColors.focusBackgroundDark;
             }
             if (states.contains(WidgetState.pressed)) {
               return SiteColors.secondaryBackgroundDark;
@@ -86,7 +83,6 @@ class _TopNavigationState extends State<TopNavigationSingleLine> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildNavItem('Home', 0),
-                _buildNavItem('About', 1),
                 _buildNavItem('Projects', 2),
                 _buildNavItem('Contact', 3),
               ],

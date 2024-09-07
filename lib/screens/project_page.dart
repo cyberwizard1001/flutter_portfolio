@@ -16,7 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
-import 'package:flutter_portfolio/widgets/home/top_navigation_single_line.dart';
+import 'package:flutter_portfolio/widgets/top_navigation_single_line.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,9 +24,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../data/project_data.dart';
 import '../models/project_model.dart';
+import '../widgets/projects/connect_section.dart';
 
 
-//URL: /#/projects
+///URL: //projects
 
 class ProjectPage extends StatefulWidget {
 
@@ -403,66 +404,4 @@ class FurtherReadingComponent extends StatelessWidget {
   }
 }
 
-class ConnectSection extends StatelessWidget {
-  const ConnectSection({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final Uri mediumUrl = Uri.parse('https://nirmalkarthikeyan.medium.com/');
-    final Uri linkedInUrl =
-        Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
-
-    Future<void> customLaunchUrl(Uri url) async {
-      if (!await launchUrl(url)) {
-        throw Exception('Could not launch $url');
-      }
-    }
-
-    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('2023 © - Designed and developed by Nirmal Karthikeyan',
-              style: GoogleFonts.lato(
-                color: SiteColors.secondaryDark,
-                fontSize: 10.sp,
-              )),
-          SizedBox(
-            width: 20.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    customLaunchUrl(mediumUrl);
-                  },
-                  child: Text(
-                    'Portfolio site repository',
-                    style: GoogleFonts.lato(
-                      color: SiteColors.primaryDark,
-                      fontSize: 10.sp,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    customLaunchUrl(linkedInUrl);
-                  },
-                  child: Text(
-                    'View my CV',
-                    style: GoogleFonts.lato(
-                      color: SiteColors.primaryDark,
-                      fontSize: 10.sp,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      SizedBox(height: 5.h),
-    ]);
-  }
-}

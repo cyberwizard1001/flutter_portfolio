@@ -1,4 +1,3 @@
-
 /// HomePage.dart - Home Page of the website
 ///
 /// This file implements the main landing page of the portfolio website.
@@ -16,23 +15,19 @@
 /// Author: Nirmal Karthikeyan
 library;
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/home/terminal_interface_widget.dart';
-import 'package:flutter_portfolio/widgets/top_navigation.dart';
+import 'package:flutter_portfolio/widgets/home/top_navigation.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'dart:html' as html;
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 import '../utils/responsive.dart';
 import '../widgets/projects/projects_card.dart';
 import '../widgets/projects/skill_card.dart';
-
-
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -54,8 +49,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,24 +56,23 @@ class _HomePageState extends State<HomePage> {
       appBar: Responsive.isDesktop(context)
           ? null
           : AppBar(
-        backgroundColor: SiteColors.backgroundDark,
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: const Icon(Icons.menu),
-          ),
-        ),
-      ),
+              backgroundColor: SiteColors.backgroundDark,
+              leading: Builder(
+                builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(Icons.menu),
+                ),
+              ),
+            ),
       body: Padding(
         padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
         child: LayoutBuilder(builder: (context, constraints) {
-          return CustomScrollView(
-            controller: _scrollController,
-              slivers: [
+          return CustomScrollView(controller: _scrollController, slivers: [
             SliverStickyHeader(
-              header: Responsive.isDesktop(context) ? const TopNavigation() : null,
+              header:
+                  Responsive.isDesktop(context) ? const TopNavigation() : null,
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   [
@@ -168,9 +160,16 @@ class LandingSection extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(40.0)),
               ),
-              onPressed: () {
+              onPressed: () async {
                 // context.push('/cv');
-                html.window.open('https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
+                //html.window.open('https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
+                final Uri cvURL = Uri.parse(
+                    'https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf');
+                if (await canLaunchUrl(cvURL)) {
+                  await launchUrl(cvURL, webOnlyWindowName: '_blank');
+                } else {
+                  throw 'Could not launch';
+                }
               },
               child: Text(
                 'View CV',
@@ -267,7 +266,7 @@ class ProjectsSection extends StatelessWidget {
             ),
             MaterialButton(
               onPressed: () {
-                //context.go('/projects');
+                context.go('/projects');
               },
               child: Row(
                 children: [
@@ -460,9 +459,8 @@ class ConnectSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final Uri repositoryUrl =
         Uri.parse('https://github.com/cyberwizard1001/flutter_portfolio');
-    final Uri linkedInUrl =
-        Uri.parse('https://www.linkedin.com/in/nirmal-karthikeyan/');
-
+    final Uri cvUrl = Uri.parse(
+        'https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf');
     Future<void> customLaunchUrl(Uri url) async {
       if (!await launchUrl(url)) {
         throw Exception('Could not launch $url');
@@ -522,7 +520,7 @@ class ConnectSection extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    customLaunchUrl(linkedInUrl);
+                    customLaunchUrl(cvUrl);
                   },
                   child: Text(
                     'View my CV',

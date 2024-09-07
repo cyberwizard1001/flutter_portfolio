@@ -28,6 +28,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/project_data.dart';
 import 'package:flutter_portfolio/screens/home_page.dart';
 import 'package:flutter_portfolio/screens/project_page.dart';
+import 'package:flutter_portfolio/screens/projects_listing.dart';
 import 'package:flutter_portfolio/utils/pdf_viewer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -63,6 +64,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/cv',
       builder: (context, state) => const PdfViewer(),
+    ),
+    GoRoute(
+      path: '/projects',
+      builder: (context, state) => ProjectsListingPage(),
     )
   ],
 );
