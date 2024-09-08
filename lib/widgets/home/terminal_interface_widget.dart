@@ -40,9 +40,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
 
   void _printMenu() {
     _output.clear(); // Clear existing output
-    _output.add(const Text(
+    _output.add(Text(
       'Available commands:',
-      style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+      style: GoogleFonts.vt323(color: Colors.white, fontSize: 14.sp),
     ));
     _output.addAll([
       _buildCommandText('menu', 'Show this menu again (clears screen)'),
@@ -62,7 +62,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
   Widget _buildCommandText(String command, String description) {
     return RichText(
       text: TextSpan(
-        style: const TextStyle(fontFamily: 'Courier'),
+        style: GoogleFonts.vt323(fontSize: 14.sp),
         children: [
           TextSpan(
             text: command.padRight(12),
@@ -81,7 +81,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     _output.add(const SizedBox(height: 10)); // Add vertical spacing
     _output.add(RichText(
       text: TextSpan(
-        style: const TextStyle(fontFamily: 'Courier'),
+        style: GoogleFonts.vt323(fontSize: 14.sp),
         children: [
           const TextSpan(text: '> ', style: TextStyle(color: Colors.white)),
           TextSpan(
@@ -93,9 +93,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     ));
 
     if (input.toLowerCase() == 'menu') {
-      _output.add(const Text(
+      _output.add(Text(
         'Clearing screen and showing menu...',
-        style: TextStyle(color: Colors.yellow, fontFamily: 'Courier'),
+        style: GoogleFonts.vt323(color: Colors.yellow, fontSize: 14.sp),
       ));
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
@@ -103,14 +103,14 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
         });
       });
     } else if (_commands.contains(input.toLowerCase())) {
-      _output.add(const Text(
+      _output.add(Text(
         'Command recognized. Response will be implemented soon.',
-        style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+        style: GoogleFonts.vt323(color: Colors.white, fontSize: 14.sp),
       ));
     } else {
-      _output.add(const Text(
+      _output.add(Text(
           "Hold your horses! There's no AI here (yet) :/ Please enter one of the commands above for a response :)",
-      style: TextStyle(color: Colors.red, fontFamily: 'Courier'),
+      style: GoogleFonts.vt323(color: Colors.red, fontSize: 14.sp),
     ));
     }
 
@@ -170,8 +170,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                               child: Text(
                                 'artemis@notaterminal:~\$',
-                                style: GoogleFonts.lato(
+                                style: GoogleFonts.vt323(
                                   color: SiteColors.focusDark,
+                                    fontSize: 14.sp
                                 ),
                               ),
                             ),
@@ -180,7 +181,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Text(
                               'To get to know me better, run one of the following commands:',
-                              style: GoogleFonts.lato(color: SiteColors.primaryDark),
+                              style: GoogleFonts.vt323(color: SiteColors.primaryDark, fontSize: 14.sp),
                             ),
                           ),
                         ],
@@ -193,9 +194,9 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
               ),
               Row(
                 children: [
-                  const Text(
+                  Text(
                     '>',
-                    style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+                    style: GoogleFonts.vt323(color: Colors.white, fontSize: 14.sp),
                   ),
                   Expanded(
                     child: Stack(
@@ -203,7 +204,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                         TextField(
                           controller: _controller,
                           focusNode: _focusNode,
-                          style: const TextStyle(color: Colors.white, fontFamily: 'Courier'),
+                          style: GoogleFonts.vt323(color: Colors.white, fontSize: 14.sp),
                           cursorColor: Colors.transparent, // Hide the default cursor
                           decoration: const InputDecoration(
                             border: InputBorder.none,
