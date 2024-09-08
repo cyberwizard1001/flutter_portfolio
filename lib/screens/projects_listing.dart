@@ -6,7 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/utils/responsive.dart';
 import 'package:flutter_portfolio/widgets/projects/projects_card.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 import '../widgets/projects/connect_section.dart';
 

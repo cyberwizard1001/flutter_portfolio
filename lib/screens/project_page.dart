@@ -20,7 +20,7 @@ import 'package:flutter_portfolio/widgets/top_navigation_single_line.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 import '../data/project_data.dart';
 import '../models/project_model.dart';
