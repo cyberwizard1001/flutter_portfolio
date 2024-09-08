@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
-import 'package:flutter_portfolio/utils/terminal_command_formatting.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -13,8 +12,9 @@ class TerminalInterfaceWidget extends StatefulWidget {
 
 class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> _output = [];
+  final List<Widget> _output = [];
   final List<String> _commands = [
+    'menu',
     'origin',
     'experience',
     'education',
@@ -27,24 +27,112 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
     'cmdline',
   ];
   final FocusNode _focusNode = FocusNode();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _printMenu();
+    _controller.addListener(() {
+      setState(() {}); // Trigger rebuild when text changes
+    });
+  }
+
+  void _printMenu() {
+    _output.clear(); // Clear existing output
+    _output.add(const Text(
+      'Available commands:',
+      style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+    ));
+    _output.addAll([
+      _buildCommandText('menu', 'Show this menu again (clears screen)'),
+      _buildCommandText('origin', 'Origin story'),
+      _buildCommandText('experience', 'My professional work experiences'),
+      _buildCommandText('education', "My Bachelor's and Master's degrees"),
+      _buildCommandText('youtube', 'Favourite YouTube channels'),
+      _buildCommandText('interests', 'What keeps me hooked'),
+      _buildCommandText('hobbies', 'You might find me doing one of these things in the wild'),
+      _buildCommandText('dream', 'What do I see myself doing in a few years?'),
+      _buildCommandText('funfact', 'A fun fact. Demonstrating my ability to use API calls'),
+      _buildCommandText('artemis', 'Artemis?'),
+      _buildCommandText('cmdline', 'Command-line? Really? Not the most user friendly user interface, mate'),
+    ]);
+  }
+
+  Widget _buildCommandText(String command, String description) {
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(fontFamily: 'Courier'),
+        children: [
+          TextSpan(
+            text: command.padRight(12),
+            style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+          ),
+          TextSpan(
+            text: '- $description',
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
 
   void _handleCommand(String input) {
-    if (_commands.contains(input)) {
-      _output.add('> $input');
-      _output.add(input);
+    _output.add(const SizedBox(height: 10)); // Add vertical spacing
+    _output.add(RichText(
+      text: TextSpan(
+        style: const TextStyle(fontFamily: 'Courier'),
+        children: [
+          const TextSpan(text: '> ', style: TextStyle(color: Colors.white)),
+          TextSpan(
+            text: input,
+            style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    ));
+
+    if (input.toLowerCase() == 'menu') {
+      _output.add(const Text(
+        'Clearing screen and showing menu...',
+        style: TextStyle(color: Colors.yellow, fontFamily: 'Courier'),
+      ));
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          _printMenu();
+        });
+      });
+    } else if (_commands.contains(input.toLowerCase())) {
+      _output.add(const Text(
+        'Command recognized. Response will be implemented soon.',
+        style: TextStyle(color: Colors.white, fontFamily: 'Courier'),
+      ));
     } else {
-      _output.add('> $input');
-      _output.add('Hold your horses! There’s no AI here (yet) :/ Please enter one of the 9 commands above for a response :)');
+      _output.add(const Text(
+          "Hold your horses! There's no AI here (yet) :/ Please enter one of the commands above for a response :)",
+      style: TextStyle(color: Colors.red, fontFamily: 'Courier'),
+    ));
     }
+
     _controller.clear();
     setState(() {});
     _focusNode.requestFocus(); // Return focus to the text field
+
+    // Scroll to the bottom after the state has been updated
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    _scrollController.animateTo(
+    _scrollController.position.maxScrollExtent,
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.easeOut,
+    );
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
     _focusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -64,6 +152,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
+                  controller: _scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -96,39 +185,8 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 16.0, top: 15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Replace these with Command widgets
-                            Command(serial: 1, command: 'origin', description: 'Origin story'),
-                            Command(serial: 2, command: 'experience', description: 'My professional work experiences'),
-                            Command(serial: 3, command: 'education', description: 'My Bachelor’s and Master’s degrees'),
-                            Command(serial: 4, command: 'youtube', description: 'Favourite YouTube channels'),
-                            Command(serial: 5, command: 'interests', description: 'What keeps me hooked'),
-                            Command(serial: 6, command: 'hobbies', description: 'You might find me doing one of these things in the wild'),
-                            Command(serial: 7, command: 'dream', description: 'What do I see myself doing in a few years?'),
-                            Command(serial: 8, command: 'funfact', description: 'A fun fact. Demonstrating my ability to use API calls'),
-                            Command(serial: 9, command: 'artemis', description: 'Artemis?'),
-                            Command(serial: 10, command: 'cmdline', description: 'Command-line? Really? Not the most user friendly user interface, mate'),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: _output
-                            .map((line) => Text(
-                          line,
-                          style: TextStyle(
-                            color: line.startsWith('Hold your horses!')
-                                ? Colors.red
-                                : Colors.white,
-                            fontFamily: 'Courier',
-                          ),
-                        ))
-                            .toList(),
-                      ),
+                      const SizedBox(height: 10), // Add some space after the header
+                      ..._output,
                     ],
                   ),
                 ),
@@ -156,6 +214,7 @@ class TerminalInterfaceWidgetState extends State<TerminalInterfaceWidget> {
                         ),
                         Positioned(
                           left: 8.0 + _calculateCursorOffset(),
+                          top: 2.0, // Adjust this value to align the cursor vertically
                           child: const BlinkingCursor(),
                         ),
                       ],
@@ -222,7 +281,7 @@ class BlinkingCursorState extends State<BlinkingCursor>
       opacity: _opacity.value,
       child: Container(
         width: 2,
-        height: 20,
+        height: 18, // Adjust this value to match the text height
         color: Colors.white,
       ),
     );

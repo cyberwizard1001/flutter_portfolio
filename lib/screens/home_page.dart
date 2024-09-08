@@ -161,8 +161,6 @@ class LandingSection extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(40.0)),
               ),
               onPressed: () async {
-                // context.push('/cv');
-                //html.window.open('https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf', 'new tab');
                 final Uri cvURL = Uri.parse(
                     'https://github.com/cyberwizard1001/flutter_portfolio/blob/dadd504b8353b29bf4343092ae3569f46c7ba0eb/assets/pdfs/Nirmal_Karthikeyan.pdf');
                 if (await canLaunchUrl(cvURL)) {
