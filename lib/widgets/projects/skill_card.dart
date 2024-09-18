@@ -27,7 +27,7 @@ class SkillCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (imageLocation != 'no')
+              if (imageLocation == 'no')
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -41,16 +41,18 @@ class SkillCard extends StatelessWidget {
                     alignment: alignment,
                     child: Expanded(
                       child: Container(
+                        height: skill == 'UX Design' ? 18.h : skill == 'User Research' ? 12.h : skill =='AWS' ? 15.h : 13.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.network(
-                            imageLocation,
+                          child: Image(
+                            image: AssetImage(imageLocation),
                             fit: BoxFit.cover,
                           )),
                     )),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: EdgeInsets.only(bottom: 10.0,
+                top: skill == 'UX Design' ? 10 : skill == 'User Research' ? 6.h : 4.h),
                 child: Text(
                   skill,
                   style: GoogleFonts.lato(

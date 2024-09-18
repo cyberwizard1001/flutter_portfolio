@@ -363,53 +363,53 @@ class SkillsSection extends StatelessWidget {
 
   final List<SkillCard> skills = [
     const SkillCard(
-      alignment: Alignment.center,
-      imageLocation: '',
+      alignment: Alignment.topRight,
+      imageLocation: 'assets/images/UX_design.png',
       skill: 'UX Design',
     ),
     const SkillCard(
-      alignment: Alignment.center,
-      imageLocation: '',
+      alignment: Alignment.topRight,
+      imageLocation: 'assets/images/User_research.png',
       skill: 'User Research',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'assets/images/Figma.png',
       skill: 'Figma',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'assets/images/Analytics.png',
       skill: 'Analytics',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'assets/images/Website_builders.png',
       skill: 'Website builders',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'assets/images/Flutter.png',
       skill: 'Flutter',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'assets/images/AWS.png',
       skill: 'AWS',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'no',
       skill: 'CRMs',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'no',
       skill: 'CI/CD',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: '',
+      imageLocation: 'no',
       skill: 'Linux',
     ),
   ];
