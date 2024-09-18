@@ -369,32 +369,32 @@ class SkillsSection extends StatelessWidget {
     ),
     const SkillCard(
       alignment: Alignment.topRight,
-      imageLocation: 'assets/images/User_research.png',
+      imageLocation: 'assets/assets/images/User_research.png',
       skill: 'User Research',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: 'assets/images/Figma.png',
+      imageLocation: 'assets/assets/images/Figma.png',
       skill: 'Figma',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: 'assets/images/Analytics.png',
+      imageLocation: 'assets/assets/images/Analytics.png',
       skill: 'Analytics',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: 'assets/images/Website_builders.png',
+      imageLocation: 'assets/assets/images/Website_builders.png',
       skill: 'Website builders',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: 'assets/images/Flutter.png',
+      imageLocation: 'assets/assets/images/Flutter.png',
       skill: 'Flutter',
     ),
     const SkillCard(
       alignment: Alignment.center,
-      imageLocation: 'assets/images/AWS.png',
+      imageLocation: 'assets/assets/images/AWS.png',
       skill: 'AWS',
     ),
     const SkillCard(
