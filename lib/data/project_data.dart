@@ -40,7 +40,6 @@ final project1 = ProjectModel(
 
       ],
     ),
-
   ],
   furtherReadingItems: [
     const ProjectsCard(projectID: 1),

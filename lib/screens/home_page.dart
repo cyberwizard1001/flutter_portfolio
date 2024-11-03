@@ -19,13 +19,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/utils/colors.dart';
 import 'package:flutter_portfolio/widgets/home/terminal_interface_widget.dart';
 import 'package:flutter_portfolio/widgets/home/top_navigation.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/responsive.dart';
+import '../widgets/home/mobile_top_navigation.dart';
 import '../widgets/projects/projects_card.dart';
 import '../widgets/projects/skill_card.dart';
 
@@ -40,13 +40,42 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
+  bool showButton = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.addListener(_scrollListener);
+    });
+  }
+
+  void _scrollListener() {
+    if (_scrollController.hasClients) {
+      final shouldShow = _scrollController.offset > 100;
+      if (shouldShow != showButton) {
+        setState(() {
+          showButton = shouldShow;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   void toTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
@@ -56,55 +85,66 @@ class _HomePageState extends State<HomePage> {
       appBar: Responsive.isDesktop(context)
           ? null
           : AppBar(
-              backgroundColor: SiteColors.backgroundDark,
-              leading: Builder(
-                builder: (context) => IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(Icons.menu),
-                ),
-              ),
-            ),
+        backgroundColor: SiteColors.backgroundDark,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu),
+            // Add this to change the menu icon color
+            color: SiteColors.primaryDark,  // or any other contrasting color
+          ),
+        ),
+        title: Text(
+          'Nirmal Karthikeyan',
+          style: GoogleFonts.lato(
+            color: SiteColors.primaryDark,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      drawer: Responsive.isDesktop(context)
+          ? null
+          : SizedBox(
+        // Add this to make drawer narrower than screen width
+        width: 70.w,
+        child: const MobileNavigation(),
+      ),
       body: Padding(
         padding: EdgeInsets.only(top: 20.0, left: 8.w, right: 10.w),
-        child: LayoutBuilder(builder: (context, constraints) {
-          return CustomScrollView(controller: _scrollController, slivers: [
-            SliverStickyHeader(
-              header:
-                  Responsive.isDesktop(context) ? const TopNavigation() : null,
-              sliver: SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    SizedBox(height: 6.h),
-                    const LandingSection(),
-                    SizedBox(
-                      height: 25.h,
+        child: LayoutBuilder(
+            builder: (context, constraints) {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  if (Responsive.isDesktop(context))
+                    const SliverToBoxAdapter(
+                      child: TopNavigation(),
                     ),
-                    ProjectsSection(),
-                    SizedBox(
-                      height: 25.h,
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        SizedBox(height: 6.h),
+                        const LandingSection(),
+                        SizedBox(height: 25.h),
+                        ProjectsSection(),
+                        SizedBox(height: 25.h),
+                        const AboutSection(),
+                        SizedBox(height: 25.h),
+                        SkillsSection(),
+                        SizedBox(height: 25.h),
+                        const ConnectSection(),
+                      ],
                     ),
-                    const AboutSection(),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    SkillsSection(),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    const ConnectSection(),
-
-                    //Add more sections here
-                  ],
-                ),
-              ),
-            ),
-          ]);
-        }),
+                  ),
+                ],
+              );
+            }
+        ),
       ),
       floatingActionButton: Visibility(
-        visible: _scrollController.hasClients && _scrollController.offset > 100,
+        visible: showButton,
         child: FloatingActionButton(
           onPressed: toTop,
           tooltip: 'To Top',
@@ -208,7 +248,7 @@ class LandingSection extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Text(
-                  "Hello! I’m Nirmal. I’m a developer turned designer with an eye for detail and a very varied list of interests.",
+                  "Hello! I’m Nirmal. With a foundation in programming, I now focus on design, and bring with me a keen eye for detail and varied interests.",
                   textAlign: TextAlign.end,
                   style: GoogleFonts.lato(
                     color: SiteColors.primaryDark,
